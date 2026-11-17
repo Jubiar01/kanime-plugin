@@ -1,13 +1,14 @@
 {
   "plugin_config_version": 2,
+  "release_notes": "Official KAnikoto signed release v1.0.0. Featuring high-speed multi-server HLS stream extraction, MegaPlay AES-256 decryption, and synchronized subtitles.",
   "plugins": [
     {
       "id": "kanikoto",
       "name": "KAnikoto Extractor",
       "packageName": "com.kanime.plugin.kanikoto",
       "providerAuthority": "com.kanime.plugin.kanikoto.provider",
-      "version": "1.2.0",
-      "versionCode": 12,
+      "version": "1.0.0",
+      "versionCode": 1,
       "author": "KAnime Official",
       "description": "Official online streaming plugin for Anikoto with MegaPlay AES decryption and multi-server HLS streams.",
       "capabilities": [
