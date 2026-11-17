@@ -18,7 +18,7 @@
       ],
       "sourceUrl": "https://anikototv.bz",
       "apkFileName": "kanikoto-plugin.apk",
-      "apkDownloadUrl": "https://github.com/kanime-app/plugins/releases/download/v1.2.0/kanikoto-plugin.apk",
+      "apkDownloadUrl": "https://github.com/Jubiar01/kanime-plugin/raw/refs/heads/main/kanikoto-plugin-release.apk",
       "apkSize": "3.3 MB",
       "isDefault": true,
       "changelog": "Added MegaPlay AES decryption and high-speed multi-server HLS extraction."
