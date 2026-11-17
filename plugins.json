@@ -1,0 +1,27 @@
+{
+  "plugin_config_version": 1,
+  "config_update_url": "https://raw.githubusercontent.com/kanime-app/plugins/main/plugins.json",
+  "plugins": [
+    {
+      "id": "kanikoto",
+      "name": "KAnikoto Extractor",
+      "packageName": "com.kanime.plugin.kanikoto",
+      "providerAuthority": "com.kanime.plugin.kanikoto.provider",
+      "version": "1.2.0",
+      "versionCode": 12,
+      "author": "KAnime Official",
+      "description": "Official online streaming plugin for Anikoto with MegaPlay AES decryption and multi-server HLS streams.",
+      "capabilities": [
+        "HLS 1080p FHD",
+        "MegaPlay AES-256",
+        "Sub & Dub"
+      ],
+      "sourceUrl": "https://anikototv.bz",
+      "apkFileName": "kanikoto-plugin.apk",
+      "apkDownloadUrl": "https://github.com/kanime-app/plugins/releases/download/v1.2.0/kanikoto-plugin.apk",
+      "apkSize": "3.3 MB",
+      "isDefault": true,
+      "changelog": "Added MegaPlay AES decryption and high-speed multi-server HLS extraction."
+    }
+  ]
+}
