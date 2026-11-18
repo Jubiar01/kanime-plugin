@@ -7,7 +7,7 @@
       "name": "KAnikoto Extractor",
       "packageName": "com.kanime.plugin.kanikoto",
       "providerAuthority": "com.kanime.plugin.kanikoto.provider",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "versionCode": 2,
       "author": "KAnime Official",
       "description": "Official online streaming plugin for Anikoto with MegaPlay AES decryption and multi-server HLS streams.",
