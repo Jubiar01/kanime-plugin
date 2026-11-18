@@ -1,6 +1,6 @@
 {
-  "plugin_config_version": 2,
-  "release_notes": "Official KAnikoto signed release v1.0.0. Featuring high-speed multi-server HLS stream extraction, MegaPlay AES-256 decryption, and synchronized subtitles.",
+  "plugin_config_version": 3,
+  "release_notes": "Added KAnimeHeaven Extractor v1.0.0 (direct MP4 streaming) alongside optimized KAnikoto Extractor v1.0.1.",
   "plugins": [
     {
       "id": "kanikoto",
@@ -21,7 +21,28 @@
       "apkDownloadUrl": "https://github.com/Jubiar01/kanime-plugin/raw/refs/heads/main/kanikoto-plugin-release.apk",
       "apkSize": "127 KB",
       "isDefault": true,
-      "changelog": "Added MegaPlay AES decryption and high-speed multi-server HLS extraction."
+      "changelog": "Reduced APK size to 127 KB, faster search matching, and MegaPlay AES decryption."
+    },
+    {
+      "id": "kanimeheaven",
+      "name": "KAnimeHeaven Extractor",
+      "packageName": "com.kanime.plugin.kanimeheaven",
+      "providerAuthority": "com.kanime.plugin.kanimeheaven.provider",
+      "version": "1.0.0",
+      "versionCode": 1,
+      "author": "KAnime Official",
+      "description": "Direct high-speed MP4 anime streaming plugin for AnimeHeaven with session-aware gate extraction.",
+      "capabilities": [
+        "Direct MP4",
+        "Fast Search",
+        "Hardcoded Sub"
+      ],
+      "sourceUrl": "https://animeheaven.me",
+      "apkFileName": "kanimeheaven-plugin.apk",
+      "apkDownloadUrl": "https://github.com/Jubiar01/kanime-plugin/raw/refs/heads/main/kanimeheaven-plugin-release.apk",
+      "apkSize": "123 KB",
+      "isDefault": false,
+      "changelog": "Initial release with AnimeHeaven fast search, episode list, and direct MP4 gate extraction."
     }
   ]
 }
