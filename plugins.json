@@ -1,10 +1,11 @@
 {
-  "plugin_config_version": 4,
+  "plugin_config_version": 5,
   "release_date": "2026-11-18",
   "min_app_version": "1.0.0",
   "release_notes": [
-    "Updated KAnimeHeaven Extractor to v1.0.1 with soft subtitle track extraction",
-    "Includes KAnikoto Extractor v1.0.1 (127 KB)"
+    "Added KOpenSubtitle v1.0.0 for automatic online OpenSubtitles fallback on sources without subtitles",
+    "Updated KAnimeHeaven Extractor to v1.0.1 with clean soft-subtitle toggle support",
+    "Includes optimized KAnikoto Extractor v1.0.1"
   ],
   "plugins": [
     {
@@ -12,6 +13,7 @@
       "name": "KAnikoto Extractor",
       "packageName": "com.kanime.plugin.kanikoto",
       "providerAuthority": "com.kanime.plugin.kanikoto.provider",
+      "pluginType": "video",
       "version": "1.0.1",
       "versionCode": 2,
       "author": "KAnime Official",
@@ -36,14 +38,15 @@
       "name": "KAnimeHeaven Extractor",
       "packageName": "com.kanime.plugin.kanimeheaven",
       "providerAuthority": "com.kanime.plugin.kanimeheaven.provider",
-      "version": "1.0.2",
+      "pluginType": "video",
+      "version": "1.0.1",
       "versionCode": 2,
       "author": "KAnime Official",
       "description": "Direct high-speed MP4 anime streaming plugin for AnimeHeaven with session-aware gate extraction.",
       "capabilities": [
         "Direct MP4",
         "Fast Search",
-        "Soft & Hardcoded Sub"
+        "Soft Sub Control"
       ],
       "sourceUrl": "https://animeheaven.me",
       "apkFileName": "kanimeheaven-plugin.apk",
@@ -51,8 +54,33 @@
       "apkSize": "144 KB",
       "isDefault": false,
       "changelog": [
-        "Extract soft subtitle tracks (<track>) so captions can be toggled cleanly in the player",
-        "Prefer non-hardsubbed MP4 sources when multiple variants are available"
+        "Fixed subtitle track metadata so turning off subtitles in the player hides captions cleanly",
+        "Improved session-aware MP4 gate extraction reliability"
+      ]
+    },
+    {
+      "id": "kopensubtitle",
+      "name": "KOpenSubtitle",
+      "packageName": "com.kanime.plugin.kopensubtitle",
+      "providerAuthority": "com.kanime.plugin.kopensubtitle.provider",
+      "pluginType": "subtitle",
+      "version": "1.0.0",
+      "versionCode": 1,
+      "author": "KAnime Official",
+      "description": "Automatic online subtitle provider using OpenSubtitles for streaming sources that don't include subtitles.",
+      "capabilities": [
+        "OpenSubtitles",
+        "Multi-Language",
+        "Auto Fallback"
+      ],
+      "sourceUrl": "https://www.opensubtitles.org",
+      "apkFileName": "kopensubtitle-plugin.apk",
+      "apkDownloadUrl": "https://github.com/Jubiar01/kanime-plugin/raw/refs/heads/main/kopensubtitle-plugin-release.apk",
+      "apkSize": "42 KB",
+      "isDefault": false,
+      "changelog": [
+        "Initial release with keyless OpenSubtitles v3 and REST fallback lookup",
+        "Automatic IMDb season/episode matching with multi-language SRT track support"
       ]
     }
   ]
