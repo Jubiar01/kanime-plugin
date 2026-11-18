@@ -1,6 +1,11 @@
 {
   "plugin_config_version": 3,
-  "release_notes": "Added KAnimeHeaven Extractor v1.0.0 (direct MP4 streaming) alongside optimized KAnikoto Extractor v1.0.1.",
+  "release_date": "2026-11-18",
+  "min_app_version": "1.0.0",
+  "release_notes": [
+    "Updated KAnimeHeaven Extractor to v1.0.1 with soft subtitle track extraction",
+    "Includes KAnikoto Extractor v1.0.1 (127 KB)"
+  ],
   "plugins": [
     {
       "id": "kanikoto",
@@ -21,28 +26,34 @@
       "apkDownloadUrl": "https://github.com/Jubiar01/kanime-plugin/raw/refs/heads/main/kanikoto-plugin-release.apk",
       "apkSize": "127 KB",
       "isDefault": true,
-      "changelog": "Reduced APK size to 127 KB, faster search matching, and MegaPlay AES decryption."
+      "changelog": [
+        "Reduced APK size to 127 KB",
+        "Faster search matching and MegaPlay AES decryption"
+      ]
     },
     {
       "id": "kanimeheaven",
       "name": "KAnimeHeaven Extractor",
       "packageName": "com.kanime.plugin.kanimeheaven",
       "providerAuthority": "com.kanime.plugin.kanimeheaven.provider",
-      "version": "1.0.0",
-      "versionCode": 1,
+      "version": "1.0.1",
+      "versionCode": 2,
       "author": "KAnime Official",
       "description": "Direct high-speed MP4 anime streaming plugin for AnimeHeaven with session-aware gate extraction.",
       "capabilities": [
         "Direct MP4",
         "Fast Search",
-        "Hardcoded Sub"
+        "Soft & Hardcoded Sub"
       ],
       "sourceUrl": "https://animeheaven.me",
       "apkFileName": "kanimeheaven-plugin.apk",
       "apkDownloadUrl": "https://github.com/Jubiar01/kanime-plugin/raw/refs/heads/main/kanimeheaven-plugin-release.apk",
-      "apkSize": "123 KB",
+      "apkSize": "144 KB",
       "isDefault": false,
-      "changelog": "Initial release with AnimeHeaven fast search, episode list, and direct MP4 gate extraction."
+      "changelog": [
+        "Extract soft subtitle tracks (<track>) so captions can be toggled cleanly in the player",
+        "Prefer non-hardsubbed MP4 sources when multiple variants are available"
+      ]
     }
   ]
 }
