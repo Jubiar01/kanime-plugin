@@ -1,3 +1,207 @@
+Conversation Log
+Fix the kopensubtitle-plugin didn't match to the video of sources the of subtitle showing fromkopensubtitle-plugin reimprove that.
+
+Building the improved kopensubtitle-plugin v1.0.1 release APK and verifying the main app compile + tests now.
+
+Re-engineered kopensubtitle-plugin (v1.0.1, versionCode = 2) to accurately match anime series, multi-season arcs, split-cours, movies, and streaming video cuts across all video source plugins.
+
+What Was Fixed & Improved
+Exact MAL / AniList / Kitsu → IMDb ID Mapping (No More Wrong Shows):
+Wired malId, anilistId, kitsuId, mediaType, episodeTitle, and episodeAired from PlayerDialog.kt → PluginBridge.kt → KOpenSubtitleContentProvider.kt.
+In KOpenSubtitle.kt, primary lookup now queries arm.haglund.dev to get the exact IMDb ID (tt...), media type (movie vs series), and TVDB/TMDB season number directly (e.g. Demon Slayer: Hashira Training Arc → tt9335498 Season 5, Solo Leveling S2 → tt21209876 Season 2).
+Fallback Cinemeta title search now verifies Animation/Japan metadata so live-action titles don't hijack anime matches.
+Pinpoint Episode Mapping (Fixes Multi-Season, Split-Cour Part 2, & Long-Running Anime):
+Fetches and caches Cinemeta's episode list (/meta/series/{imdbId}.json) and resolves the exact (season, episode) via:
+Episode air date (episode.aired within ±2 days — e.g. Attack on Titan Final Season Part 2 Ep 1 → S4E17).
+Episode title similarity (ignoring generic "Episode N").
+Split-cour / Part 2 detection (detecting ≥60-day cour breaks + anime.year).
+Absolute episode indexing (e.g. One Piece Ep 1100+ mapped to the exact IMDb season/episode).
+Anime Streaming-Cut Release Ranking & Strict Filtering:
+Strictly rejects OpenSubtitles entries whose season/episode don't match the resolved episode.
+Ranks Crunchyroll (CR WEB-DL), SubsPlease, Erai-raws, and WEB-DL tracks above Netflix (NF, which often has a 4–6s intro offset), Blu-Ray, HDTV, and SDH tracks.
+Displays the release tag right in the track name (e.g., English · CR WEB-DL (OpenSubtitles), English · NF (OpenSubtitles)) and keeps up to 3 ranked variants per language so you can switch immediately if one cut differs.
+Built Release APK
+Signed APK: kopensubtitle-plugin-release.apk — 53 KB (v1.0.1, versionCode = 2).
+Note: plugins.json was left untouched at v1 as requested. To publish v1.0.1 to your GitHub catalog (Jubiar01/kanime-plugin), upload the new APK and update the kopensubtitle block:
+json
+    {
+      "id": "kopensubtitle",
+      "name": "KOpenSubtitle",
+      "packageName": "com.kanime.plugin.kopensubtitle",
+      "providerAuthority": "com.kanime.plugin.kopensubtitle.provider",
+      "pluginType": "subtitle",
+      "version": "1.0.1",
+      "versionCode": 2,
+      "author": "KAnime Official",
+      "description": "Precision online subtitle provider using OpenSubtitles with exact MAL/AniList ID & episode matching.",
+      "capabilities": [
+        "OpenSubtitles",
+        "Exact Episode Match",
+        "Multi-Language"
+      ],
+      "sourceUrl": "https://www.opensubtitles.org",
+      "apkFileName": "kopensubtitle-plugin.apk",
+      "apkDownloadUrl": "https://github.com/Jubiar01/kanime-plugin/raw/refs/heads/main/kopensubtitle-plugin-release.apk",
+      "apkSize": "53 KB",
+      "isDefault": false,
+      "changelog": [
+        "Added exact MAL/AniList/Kitsu -> IMDb + season mapping via ARM",
+        "Added air-date, episode-title, split-cour Part 2, and absolute episode matching",
+        "Prioritized Crunchyroll/SubsPlease/Erai/WEB-DL releases over Netflix/BluRay cuts with release labels"
+      ]
+    }
+{
+  "plugin_config_version": 5,
+  "release_date": "2026-11-18",
+  "min_app_version": "1.0.0",
+  "release_notes": [
+    "Added KOpenSubtitle v1.0.0 for automatic online OpenSubtitles fallback on sources without subtitles",
+    "Updated KAnimeHeaven Extractor to v1.0.1 with clean soft-subtitle toggle support",
+    "Includes optimized KAnikoto Extractor v1.0.1"
+  ],
+  "plugins": [
+    {
+      "id": "kanikoto",
+      "name": "KAnikoto Extractor",
+      "packageName": "com.kanime.plugin.kanikoto",
+      "providerAuthority": "com.kanime.plugin.kanikoto.provider",
+      "pluginType": "video",
+      "version": "1.0.1",
+      "versionCode": 2,
+      "author": "KAnime Official",
+      "description": "Official online streaming plugin for Anikoto with MegaPlay AES decryption and multi-server HLS streams.",
+      "capabilities": [
+        "HLS 1080p FHD",
+        "MegaPlay AES-256",
+        "Sub & Dub"
+      ],
+      "sourceUrl": "https://anikototv.bz",
+      "apkFileName": "kanikoto-plugin.apk",
+      "apkDownloadUrl": "https://github.com/Jubiar01/kanime-plugin/raw/refs/heads/main/kanikoto-plugin-release.apk",
+      "apkSize": "127 KB",
+      "isDefault": true,
+      "changelog": [
+        "Reduced APK size to 127 KB",
+        "Faster search matching and MegaPlay AES decryption"
+      ]
+    },
+        {
+      "id": "kopensubtitle",
+      "name": "KOpenSubtitle",
+      "packageName": "com.kanime.plugin.kopensubtitle",
+      "providerAuthority": "com.kanime.plugin.kopensubtitle.provider",
+      "pluginType": "subtitle",
+      "version": "1.0.1",
+      "versionCode": 2,
+      "author": "KAnime Official",
+      "description": "Precision online subtitle provider using OpenSubtitles with exact MAL/AniList ID & episode matching.",
+      "capabilities": [
+        "OpenSubtitles",
+        "Exact Episode Match",
+        "Multi-Language"
+      ],
+      "sourceUrl": "https://www.opensubtitles.org",
+      "apkFileName": "kopensubtitle-plugin.apk",
+      "apkDownloadUrl": "https://github.com/Jubiar01/kanime-plugin/raw/refs/heads/main/kopensubtitle-plugin-release.apk",
+      "apkSize": "53 KB",
+      "isDefault": false,
+      "changelog": [
+        "Added exact MAL/AniList/Kitsu -> IMDb + season mapping via ARM",
+        "Added air-date, episode-title, split-cour Part 2, and absolute episode matching",
+        "Prioritized Crunchyroll/SubsPlease/Erai/WEB-DL releases over Netflix/BluRay cuts with release labels"
+      ]
+    }
+    }
+  ]
+}
+is this correct?
+
+Not quite — there is a JSON syntax error (an extra closing } right before ]), which would cause Kanime to reject the file as invalid JSON.
+
+Also a couple of minor mismatches:
+
+release_notes still says KOpenSubtitle v1.0.0 instead of v1.0.1.
+release_notes mentions KAnimeHeaven Extractor, which was removed from your plugins list (keep it removed below if intentional, or re-add the kanimeheaven entry if you still want it in the catalog).
+If you already published plugin_config_version: 5, bump it to 6 so users get notified of the update.
+
+Here is the fixed, valid JSON:
+
+json
+{
+  "plugin_config_version": 6,
+  "release_date": "2026-11-18",
+  "min_app_version": "1.0.0",
+  "release_notes": [
+    "Updated KOpenSubtitle to v1.0.1 with exact MAL/AniList ID, episode air-date, and streaming-cut matching",
+    "Includes optimized KAnikoto Extractor v1.0.1"
+  ],
+  "plugins": [
+    {
+      "id": "kanikoto",
+      "name": "KAnikoto Extractor",
+      "packageName": "com.kanime.plugin.kanikoto",
+      "providerAuthority": "com.kanime.plugin.kanikoto.provider",
+      "pluginType": "video",
+      "version": "1.0.1",
+      "versionCode": 2,
+      "author": "KAnime Official",
+      "description": "Official online streaming plugin for Anikoto with MegaPlay AES decryption and multi-server HLS streams.",
+      "capabilities": [
+        "HLS 1080p FHD",
+        "MegaPlay AES-256",
+        "Sub & Dub"
+      ],
+      "sourceUrl": "https://anikototv.bz",
+      "apkFileName": "kanikoto-plugin.apk",
+      "apkDownloadUrl": "https://github.com/Jubiar01/kanime-plugin/raw/refs/heads/main/kanikoto-plugin-release.apk",
+      "apkSize": "127 KB",
+      "isDefault": true,
+      "changelog": [
+        "Reduced APK size to 127 KB",
+        "Faster search matching and MegaPlay AES decryption"
+      ]
+    },
+    {
+      "id": "kopensubtitle",
+      "name": "KOpenSubtitle",
+      "packageName": "com.kanime.plugin.kopensubtitle",
+      "providerAuthority": "com.kanime.plugin.kopensubtitle.provider",
+      "pluginType": "subtitle",
+      "version": "1.0.1",
+      "versionCode": 2,
+      "author": "KAnime Official",
+      "description": "Precision online subtitle provider using OpenSubtitles with exact MAL/AniList ID & episode matching.",
+      "capabilities": [
+        "OpenSubtitles",
+        "Exact Episode Match",
+        "Multi-Language"
+      ],
+      "sourceUrl": "https://www.opensubtitles.org",
+      "apkFileName": "kopensubtitle-plugin.apk",
+      "apkDownloadUrl": "https://github.com/Jubiar01/kanime-plugin/raw/refs/heads/main/kopensubtitle-plugin-release.apk",
+      "apkSize": "53 KB",
+      "isDefault": false,
+      "changelog": [
+        "Added exact MAL/AniList/Kitsu -> IMDb + season mapping via ARM",
+        "Added air-date, episode-title, split-cour Part 2, and absolute episode matching",
+        "Prioritized Crunchyroll/SubsPlease/Erai/WEB-DL releases over Netflix/BluRay cuts with release labels"
+      ]
+    }
+  ]
+}
+publish the latest changes in my github
+
+Published all latest changes to origin/main (https://github.com/Jubiar01/kanime.git) at commit b7784bf (33 files changed).
+
+Included in this Push
+First-run onboarding (OnboardingScreen.kt) with required SAF folder picker, permissions, and live catalog update/plugin installs.
+Performance & R8 optimizations (KanimeImageLoader.kt, Glass.kt, proguard-rules.pro).
+Release notes & catalog overhaul (PluginManager.kt, PluginsScreen.kt, PluginCatalogTest.kt) — with plugins.json kept at v1.
+Card polish & date formatting (AnimeCard.kt, EpisodeCard.kt, AnimeDateFormatter.kt).
+Subtitle plugin & KOpenSubtitle integration (PlayerDialog.kt, PluginBridge.kt, SubtitleOffsetHelper.kt) with Use KOpenSubtitle toggle, real-time Subtitle Sync, clean soft-subtitle off behavior, and MAL/AniList/episode metadata passing.
+Gradle & privacy: build.gradle.kts scopes unqualified installDebug/installRelease to :app, and .gitignore keeps kopensubtitle-plugin/ excluded alongside your other private plugin modules.
+can you add the kanimeheaven-plugin in this plugin.json:
+
 {
   "plugin_config_version": 5,
   "release_date": "2026-11-18",
@@ -30,6 +234,100 @@
       "changelog": [
         "Reduced APK size to 127 KB",
         "Faster search matching and MegaPlay AES decryption"
+      ]
+    },
+    {
+      "id": "kopensubtitle",
+      "name": "KOpenSubtitle",
+      "packageName": "com.kanime.plugin.kopensubtitle",
+      "providerAuthority": "com.kanime.plugin.kopensubtitle.provider",
+      "pluginType": "subtitle",
+      "version": "1.0.3",
+      "versionCode": 2,
+      "author": "KAnime Official",
+      "description": "Precision online subtitle provider using OpenSubtitles with exact MAL/AniList ID & episode matching.",
+      "capabilities": [
+        "OpenSubtitles",
+        "Exact Episode Match",
+        "Multi-Language"
+      ],
+      "sourceUrl": "https://www.opensubtitles.org",
+      "apkFileName": "kopensubtitle-plugin.apk",
+      "apkDownloadUrl": "https://github.com/Jubiar01/kanime-plugin/raw/refs/heads/main/kopensubtitle-plugin-release.apk",
+      "apkSize": "53 KB",
+      "isDefault": false,
+      "changelog": [
+        "Added exact MAL/AniList/Kitsu -> IMDb + season mapping via ARM",
+        "Added air-date, episode-title, split-cour Part 2, and absolute episode matching",
+        "Prioritized Crunchyroll/SubsPlease/Erai/WEB-DL releases over Netflix/BluRay cuts with release labels"
+      ]
+    }
+  ]
+}
+
+don't make a changes in plugins.json because i publish the changes in online remote 
+
+Here is your complete, validated plugins.json with KAnimeHeaven Extractor (v1.0.1) added alongside KAnikoto and KOpenSubtitle (no files were modified in app/src/main/assets/plugins.json):
+
+json
+{
+  "plugin_config_version": 6,
+  "release_date": "2026-11-19",
+  "min_app_version": "1.0.0",
+  "release_notes": [
+    "Added KAnimeHeaven Extractor v1.0.1 with direct MP4 streaming and soft-subtitle control",
+    "Updated KOpenSubtitle to v1.0.3 with exact MAL/AniList ID, episode air-date, and streaming-cut matching",
+    "Includes optimized KAnikoto Extractor v1.0.1"
+  ],
+  "plugins": [
+    {
+      "id": "kanikoto",
+      "name": "KAnikoto Extractor",
+      "packageName": "com.kanime.plugin.kanikoto",
+      "providerAuthority": "com.kanime.plugin.kanikoto.provider",
+      "pluginType": "video",
+      "version": "1.0.1",
+      "versionCode": 2,
+      "author": "KAnime Official",
+      "description": "Official online streaming plugin for Anikoto with MegaPlay AES decryption and multi-server HLS streams.",
+      "capabilities": [
+        "HLS 1080p FHD",
+        "MegaPlay AES-256",
+        "Sub & Dub"
+      ],
+      "sourceUrl": "https://anikototv.bz",
+      "apkFileName": "kanikoto-plugin.apk",
+      "apkDownloadUrl": "https://github.com/Jubiar01/kanime-plugin/raw/refs/heads/main/kanikoto-plugin-release.apk",
+      "apkSize": "127 KB",
+      "isDefault": true,
+      "changelog": [
+        "Reduced APK size to 127 KB",
+        "Faster search matching and MegaPlay AES decryption"
+      ]
+    },
+    {
+      "id": "kanimeheaven",
+      "name": "KAnimeHeaven Extractor",
+      "packageName": "com.kanime.plugin.kanimeheaven",
+      "providerAuthority": "com.kanime.plugin.kanimeheaven.provider",
+      "pluginType": "video",
+      "version": "1.0.1",
+      "versionCode": 2,
+      "author": "KAnime Official",
+      "description": "Direct high-speed MP4 anime streaming plugin for AnimeHeaven with session-aware gate extraction.",
+      "capabilities": [
+        "Direct MP4",
+        "Fast Search",
+        "Soft Sub Control"
+      ],
+      "sourceUrl": "https://animeheaven.me",
+      "apkFileName": "kanimeheaven-plugin.apk",
+      "apkDownloadUrl": "https://github.com/Jubiar01/kanime-plugin/raw/refs/heads/main/kanimeheaven-plugin-release.apk",
+      "apkSize": "144 KB",
+      "isDefault": false,
+      "changelog": [
+        "Fixed subtitle track metadata so turning off subtitles in the player hides captions cleanly",
+        "Improved session-aware MP4 gate extraction reliability"
       ]
     },
     {
