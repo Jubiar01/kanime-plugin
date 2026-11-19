@@ -64,7 +64,7 @@
       "packageName": "com.kanime.plugin.kopensubtitle",
       "providerAuthority": "com.kanime.plugin.kopensubtitle.provider",
       "pluginType": "subtitle",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "versionCode": 2,
       "author": "KAnime Official",
       "description": "Precision online subtitle provider using OpenSubtitles with exact MAL/AniList ID & episode matching.",
