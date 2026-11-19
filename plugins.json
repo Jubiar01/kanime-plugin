@@ -1,10 +1,11 @@
 {
-  "plugin_config_version": 6,
+  "plugin_config_version": 7,
   "release_date": "2026-11-19",
   "min_app_version": "1.0.0",
   "release_notes": [
+    "Added KReanime Extractor v1.0.0 with rotating FlixCloud WASM decryption and multi-server HLS streaming",
     "Added KAnimeHeaven Extractor v1.0.1 with direct MP4 streaming and soft-subtitle control",
-    "Updated KOpenSubtitle to v1.0.3 with exact MAL/AniList ID, episode air-date, and streaming-cut matching",
+    "Updated KOpenSubtitle to v1.0.4 with exact MAL/AniList ID, episode air-date, and streaming-cut matching",
     "Includes optimized KAnikoto Extractor v1.0.1"
   ],
   "plugins": [
@@ -31,6 +32,33 @@
       "changelog": [
         "Reduced APK size to 127 KB",
         "Faster search matching and MegaPlay AES decryption"
+      ]
+    },
+    {
+      "id": "kreanime",
+      "name": "KReanime Extractor",
+      "packageName": "com.kanime.plugin.kreanime",
+      "providerAuthority": "com.kanime.plugin.kreanime.provider",
+      "pluginType": "video",
+      "version": "1.0.0",
+      "versionCode": 1,
+      "author": "KAnime Official",
+      "description": "High-speed anime streaming plugin for ReAnime with rotating WASM-based FlixCloud AES-256 decryption and multi-server HLS streams.",
+      "capabilities": [
+        "HLS 1080p FHD",
+        "FlixCloud Decryption",
+        "Sub & Dub",
+        "Multi-Server"
+      ],
+      "sourceUrl": "https://reanime.to",
+      "apkFileName": "kreanime-plugin.apk",
+      "apkDownloadUrl": "https://github.com/Jubiar01/kanime-plugin/raw/refs/heads/main/kreanime-plugin-release.apk",
+      "apkSize": "52 KB",
+      "isDefault": false,
+      "changelog": [
+        "Initial KReanime extractor release",
+        "Pure Kotlin WASM bytecode decryptor & AES-256-CBC engine with local manifest decrypt proxy",
+        "Multi-server HD-1, HD-2, H-SUB sub & dub streams with full soft-subtitles"
       ]
     },
     {
