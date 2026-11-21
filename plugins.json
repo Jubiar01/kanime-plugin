@@ -1,5 +1,5 @@
 {
-  "plugin_config_version": 7,
+  "plugin_config_version": 8,
   "release_date": "2026-11-19",
   "min_app_version": "1.0.0",
   "release_notes": [
@@ -110,6 +110,30 @@
         "Added exact MAL/AniList/Kitsu -> IMDb + season mapping via ARM",
         "Added air-date, episode-title, split-cour Part 2, and absolute episode matching",
         "Prioritized Crunchyroll/SubsPlease/Erai/WEB-DL releases over Netflix/BluRay cuts with release labels"
+      ]
+    },
+    {
+      "id": "kanimarevival",
+      "name": "Anime Revival Extractor",
+      "packageName": "com.kanime.plugin.kanimarevival",
+      "providerAuthority": "com.kanime.plugin.kanimarevival.provider",
+      "version": "1.0.0",
+      "versionCode": 1,
+      "author": "Anime Revival",
+      "description": "Tagalog-dubbed anime series, movies, and episodes from Anime Revival (animerevival.xyz).",
+      "capabilities": [
+        "Tagalog Dub",
+        "AbyssCDN 1080p",
+        "Multi-Server"
+      ],
+      "sourceUrl": "https://animerevival.xyz",
+      "apkFileName": "kanimarevival-plugin.apk",
+      "apkDownloadUrl": "https://github.com/Jubiar01/kanime-plugin/raw/refs/heads/main/kanimarevival-plugin-release.apk",
+      "apkSize": "140 KB",
+      "isDefault": false,
+      "changelog": [
+        "Initial Anime Revival Tagalog-dubbed extractor release",
+        "Direct MP4 stream extraction from AbyssCDN, Blogger, and Archive.org"
       ]
     }
   ]
