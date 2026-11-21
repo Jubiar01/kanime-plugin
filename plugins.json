@@ -1,13 +1,14 @@
 {
-  "plugin_config_version": 8,
-  "release_date": "2026-11-19",
-  "min_app_version": "1.0.0",
-  "release_notes": [
-    "Added KReanime Extractor v1.0.0 with rotating FlixCloud WASM decryption and multi-server HLS streaming",
-    "Added KAnimeHeaven Extractor v1.0.1 with direct MP4 streaming and soft-subtitle control",
-    "Updated KOpenSubtitle to v1.0.4 with exact MAL/AniList ID, episode air-date, and streaming-cut matching",
-    "Includes optimized KAnikoto Extractor v1.0.1"
-  ],
+  "plugin_config_version": 9,
+"release_date": "2026-11-22",
+"min_app_version": "1.0.0",
+"release_notes": [
+  "Fixed Anime Revival Extractor v1.0.4: Abyss and Blogger streams now play",
+  "Added KReanime Extractor v1.0.0 with rotating FlixCloud WASM decryption and multi-server HLS streaming",
+  "Added KAnimeHeaven Extractor v1.0.1 with direct MP4 streaming and soft-subtitle control",
+  "Updated KOpenSubtitle to v1.0.4 with exact MAL/AniList ID, episode air-date, and streaming-cut matching",
+  "Includes optimized KAnikoto Extractor v1.0.1"
+],
   "plugins": [
     {
       "id": "kanikoto",
@@ -117,10 +118,10 @@
   "name": "Anime Revival Extractor",
   "packageName": "com.kanime.plugin.kanimarevival",
   "providerAuthority": "com.kanime.plugin.kanimarevival.provider",
-  "version": "1.0.1",
-  "versionCode": 2,
+  "version": "1.0.4",
+  "versionCode": 5,
   "author": "Anime Revival",
-  "description": "Tagalog-dubbed anime streaming plugin for Anime Revival with verified Blogger MP4, Abyss CDN, and Archive.org streams for reliable playback.",
+  "description": "Tagalog-dubbed anime streaming plugin for Anime Revival with reliable Blogger, Abyss CDN, and Archive.org playback through a built-in local stream proxy.",
   "capabilities": [
     "Tagalog Dub",
     "MP4 360p & 720p",
@@ -129,12 +130,13 @@
   "sourceUrl": "https://animerevival.xyz",
   "apkFileName": "kanimarevival-plugin.apk",
   "apkDownloadUrl": "https://github.com/Jubiar01/kanime-plugin/raw/refs/heads/main/kanimarevival-plugin-release.apk",
-  "apkSize": "334 KB",
+  "apkSize": "XXX KB",
   "isDefault": false,
   "changelog": [
-    "Tagalog Dub anime streaming support",
-    "Blogger MP4 direct stream extraction with 360p/720p priority",
-    "Abyss CDN and Archive.org stream resolvers"
+    "Fixed Blogger streams not playing: links are now verified and downloaded through a local stream proxy",
+    "Fixed Abyss streams not playing: chunked and multi-part video layouts are now rebuilt into one seekable MP4",
+    "Added automatic retries and short-term caching to fix random 'not found' errors",
+    "Streams are checked for real video data and expired links are refreshed automatically"
   ]
 }
   ]
