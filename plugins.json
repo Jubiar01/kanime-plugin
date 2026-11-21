@@ -120,20 +120,22 @@
       "version": "1.0.0",
       "versionCode": 1,
       "author": "Anime Revival",
-      "description": "Tagalog-dubbed anime series, movies, and episodes from Anime Revival (animerevival.xyz).",
+      "description": "Tagalog-dubbed anime series, movies, and episodes from Anime Revival.",
       "capabilities": [
         "Tagalog Dub",
-        "AbyssCDN 1080p",
-        "Multi-Server"
+        "Archive.org MP4",
+        "AbyssCDN MP4",
+        "Blogger MP4"
       ],
       "sourceUrl": "https://animerevival.xyz",
       "apkFileName": "kanimarevival-plugin.apk",
       "apkDownloadUrl": "https://github.com/Jubiar01/kanime-plugin/raw/refs/heads/main/kanimarevival-plugin-release.apk",
-      "apkSize": "140 KB",
+      "apkSize": "326 KB",
       "isDefault": false,
       "changelog": [
-        "Initial Anime Revival Tagalog-dubbed extractor release",
-        "Direct MP4 stream extraction from AbyssCDN, Blogger, and Archive.org"
+        "Tagalog-dubbed streaming from Anime Revival",
+        "Supports Archive.org, AbyssCDN, Blogger, and Direct MP4 sources",
+        "Pre-resolves CDN cross-domain redirects for reliable ExoPlayer streaming"
       ]
     }
   ]
