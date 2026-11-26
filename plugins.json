@@ -1,12 +1,13 @@
 {
-  "plugin_config_version": 10,
+  "plugin_config_version": 11,
   "release_date": "2026-11-27",
   "min_app_version": "1.0.0",
   "release_notes": [
-    "Updated Anime Revival Extractor to v1.0.11: fixed multi-season/TV show parsing, added OK.ru/Drive/Hydrax & retired Archive.org fallback, and prioritized highest-resolution Blogger & Abyss streams",
-    "Fixed KReanime Extractor v1.0.1: fixed FlixCloud WASM branch execution crash and missing opcode handling",
-    "Updated KAnikoto Extractor to v1.0.2 and KAnimeHeaven Extractor to v1.0.2 to prefer highest-resolution video sources",
-    "Includes KOpenSubtitle v1.0.4"
+    "Updated KAnikoto Extractor to v1.0.3: prioritizes highest-resolution streams and filters thumbnail, chapter, and duplicate .m3u8 subtitle tracks",
+    "Updated KReanime Extractor to v1.0.2: fixed FlixCloud WASM branch execution and filtered non-subtitle track entries",
+    "Updated KOpenSubtitle to v1.0.5: added ASS/SSA cue timing support for auto-sync/runtime checks and MAL air-date matching",
+    "Updated KAnimeHeaven Extractor to v1.0.2: ranks multi-source MP4 streams for soft-sub and highest resolution",
+    "Updated Anime Revival Extractor to v1.0.11: fixed multi-season/TV show parsing, added OK.ru/Drive/Hydrax & Archive.org fallback, and prioritized 1080p Blogger & Abyss streams"
   ],
   "plugins": [
     {
@@ -15,8 +16,8 @@
       "packageName": "com.kanime.plugin.kanikoto",
       "providerAuthority": "com.kanime.plugin.kanikoto.provider",
       "pluginType": "video",
-      "version": "1.0.2",
-      "versionCode": 3,
+      "version": "1.0.3",
+      "versionCode": 4,
       "author": "KAnime Official",
       "description": "Official online streaming plugin for Anikoto with MegaPlay AES decryption and multi-server HLS streams.",
       "capabilities": [
@@ -27,9 +28,10 @@
       "sourceUrl": "https://anikototv.bz",
       "apkFileName": "kanikoto-plugin.apk",
       "apkDownloadUrl": "https://github.com/Jubiar01/kanime-plugin/raw/refs/heads/main/kanikoto-plugin-release.apk",
-      "apkSize": "148 KB",
+      "apkSize": "149 KB",
       "isDefault": true,
       "changelog": [
+        "Filtered thumbnail/chapter tracks and duplicate .m3u8 subtitle playlists so player captions load cleanly",
         "Prioritized highest-resolution streams across Vidstream, MegaPlay, and MegaCloud extraction",
         "Ordered multi-server choices by expected stream quality priority"
       ]
@@ -40,8 +42,8 @@
       "packageName": "com.kanime.plugin.kreanime",
       "providerAuthority": "com.kanime.plugin.kreanime.provider",
       "pluginType": "video",
-      "version": "1.0.1",
-      "versionCode": 2,
+      "version": "1.0.2",
+      "versionCode": 3,
       "author": "KAnime Official",
       "description": "High-speed anime streaming plugin for ReAnime with rotating WASM-based FlixCloud AES-256 decryption and multi-server HLS streams.",
       "capabilities": [
@@ -53,9 +55,10 @@
       "sourceUrl": "https://reanime.to",
       "apkFileName": "kreanime-plugin.apk",
       "apkDownloadUrl": "https://github.com/Jubiar01/kanime-plugin/raw/refs/heads/main/kreanime-plugin-release.apk",
-      "apkSize": "56 KB",
+      "apkSize": "57 KB",
       "isDefault": false,
       "changelog": [
+        "Filtered non-subtitle thumbnail/chapter entries and normalized track labels",
         "Fixed FlixCloud WASM VM branch (br / br_if) execution crash and missing i32 opcode support",
         "Added Base64 fallback handling across key derivation and local manifest proxy playback"
       ]
@@ -90,8 +93,8 @@
       "packageName": "com.kanime.plugin.kopensubtitle",
       "providerAuthority": "com.kanime.plugin.kopensubtitle.provider",
       "pluginType": "subtitle",
-      "version": "1.0.4",
-      "versionCode": 2,
+      "version": "1.0.5",
+      "versionCode": 6,
       "author": "KAnime Official",
       "description": "Precision online subtitle provider using OpenSubtitles with exact MAL/AniList ID & episode matching.",
       "capabilities": [
@@ -102,12 +105,12 @@
       "sourceUrl": "https://www.opensubtitles.org",
       "apkFileName": "kopensubtitle-plugin.apk",
       "apkDownloadUrl": "https://github.com/Jubiar01/kanime-plugin/raw/refs/heads/main/kopensubtitle-plugin-release.apk",
-      "apkSize": "53 KB",
+      "apkSize": "66 KB",
       "isDefault": false,
       "changelog": [
-        "Added exact MAL/AniList/Kitsu -> IMDb + season mapping via ARM",
-        "Added air-date, episode-title, split-cour Part 2, and absolute episode matching",
-        "Prioritized Crunchyroll/SubsPlease/Erai/WEB-DL releases over Netflix/BluRay cuts with release labels"
+        "Added ASS/SSA Dialogue cue parsing for auto-sync analysis and runtime/consensus checks",
+        "Added MAL English air-date parsing (e.g. Jan 7, 2024) alongside ISO dates for episode matching",
+        "Handled UTF-8 BOM-prefixed subtitle files cleanly"
       ]
     },
     {
